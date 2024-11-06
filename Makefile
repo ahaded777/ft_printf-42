@@ -39,7 +39,7 @@ fclean:	clean
 re:	fclean all
 
 test: fclean $(NAME)
-	@$(CC) $(FCLAGS) ft_printf.c $(NAME) -o test_printf
+	@$(CC) $(FCLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o test_printf
 	./test_printf
 
 .PHONY: all fclean clean re

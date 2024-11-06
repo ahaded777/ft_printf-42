@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:36:35 by aahaded           #+#    #+#             */
-/*   Updated: 2024/11/06 16:32:02 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/11/06 18:05:14 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -32,6 +32,8 @@ int	ft_format(const char c, va_list args)
 		print_count += ft_print_ptr(args);
 	else if (c == 'd' || c == 'i')
 		print_count += ft_print_num(args);
+	else if (c == 'x' || c == 'X')
+		print_count ++ ft_print_hex(c, args);
 	return (print_count);
 }
 
@@ -67,11 +69,11 @@ int main()
 
 	//char c[6] = "abcde";
 	int len1, len2 = 0;
-	//int c = 5;
-	char addr[2] = "ab";
+	int c = 5;
+	//char addr[2] = "ab";
 
-	len1 = 	  ft_printf("my ft_printf: %p\n", addr);
-	len2 =    printf("printf original %p\n", addr);
+	len1 = 	  ft_printf("my ft_printf: %d\n", c);
+	len2 =    printf("printf original %d\n", c);
 	printf("\nlen my printf: %d\n", len1);
 	printf("len original printf: %d\n", len2);
 }
