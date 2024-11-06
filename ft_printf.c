@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:36:35 by aahaded           #+#    #+#             */
-/*   Updated: 2024/11/06 12:17:55 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/11/06 16:32:02 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -30,14 +30,16 @@ int	ft_format(const char c, va_list args)
 		print_count += ft_print_string(args);
 	else if (c == 'p')
 		print_count += ft_print_ptr(args);
+	else if (c == 'd' || c == 'i')
+		print_count += ft_print_num(args);
 	return (print_count);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int i;
-	int print_count;
-	va_list args;
+	int		i;
+	int		print_count;
+	va_list	args;
 
 	i = 0;
 	print_count = 0;
@@ -63,11 +65,13 @@ int	ft_printf(const char *str, ...)
 int main()
 {
 
-	char c[6] = "abcde";
-	int len1, len2;
+	//char c[6] = "abcde";
+	int len1, len2 = 0;
+	//int c = 5;
+	char addr[2] = "ab";
 
-	len1 = ft_printf("print %s, %c, %p\n", c, 'a', c);
-	len2 =    printf("prino %s, %c, %p\n", c, 'a', c);
+	len1 = 	  ft_printf("my ft_printf: %p\n", addr);
+	len2 =    printf("printf original %p\n", addr);
 	printf("\nlen my printf: %d\n", len1);
 	printf("len original printf: %d\n", len2);
 }
