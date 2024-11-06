@@ -6,10 +6,15 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:36:35 by aahaded           #+#    #+#             */
-/*   Updated: 2024/11/06 18:05:14 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/11/06 22:43:30 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
+
+int ft_print_percent(void)
+{
+	return (write(1, "%", 1));
+}
 
 int	ft_print_char(va_list args)
 {
@@ -32,8 +37,12 @@ int	ft_format(const char c, va_list args)
 		print_count += ft_print_ptr(args);
 	else if (c == 'd' || c == 'i')
 		print_count += ft_print_num(args);
+	else if (c == 'u')
+		print_count += ft_print_unsigned(args);
 	else if (c == 'x' || c == 'X')
-		print_count ++ ft_print_hex(c, args);
+		print_count += ft_print_hex(c, args);
+	else if (c == '%')
+		print_count += ft_print_percent();
 	return (print_count);
 }
 
@@ -63,17 +72,35 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (print_count);
 }
-
+ 
 int main()
 {
+     int len;
+     int len2;
+     unsigned int ui;
+     void *addr;
 
-	//char c[6] = "abcde";
-	int len1, len2 = 0;
-	int c = 5;
-	//char addr[2] = "ab";
-
-	len1 = 	  ft_printf("my ft_printf: %d\n", c);
-	len2 =    printf("printf original %d\n", c);
-	printf("\nlen my printf: %d\n", len1);
-	printf("len original printf: %d\n", len2);
+   len = ft_printf("Let's try to printf a simple sentence.\n");
+     len2 = printf("Let's try to printf a simple sentence.\n");
+     ui = (unsigned int)1024 + 1024;
+     addr = (void *)0x7ffe637541f0;
+     ft_printf("Length:[%d, %i]\n", len, len);
+     printf("Length:[%d, %i]\n", len2, len2);
+     ft_printf("Negative:[%d]\n", -762534);
+     printf("Negative:[%d]\n", -762534);
+     ft_printf("Unsigned:[%u]\n", ui);
+     printf("Unsigned:[%u]\n", ui);
+     ft_printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
+     printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
+     ft_printf("Character:[%c]\n", 'H');
+     printf("Character:[%c]\n", 'H');
+ 	 ft_printf("String:[%s]\n", "I am a string !");
+     printf("String:[%s]\n", "I am a string !");
+     ft_printf("Address:[%p]\n", addr);
+     printf("Address:[%p]\n", addr);
+     len = ft_printf("Percent:[%%]\n");
+     len2 = printf("Percent:[%%]\n");
+     ft_printf("Len:[%d]\n", len);
+     printf("Len:[%d]\n", len2);
+     return (0);
 }
