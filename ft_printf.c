@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:36:35 by aahaded           #+#    #+#             */
-/*   Updated: 2024/11/07 12:30:12 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/11/07 13:31:34 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -75,6 +75,6 @@ int	ft_printf(const char *str, ...)
 
 int main()
 {
-	printf("%u\n", -1);
-	ft_printf("%u\n", -1);
+	ft_printf("%x\n", 1);
+	printf("%x\n", 1);
 }

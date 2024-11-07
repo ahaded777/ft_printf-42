@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:06:11 by aahaded           #+#    #+#             */
-/*   Updated: 2024/11/06 18:34:40 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/11/07 13:40:27 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -16,7 +16,7 @@ static int ft_put_char(char c)
 	return (write(1, &c, 1));
 }
 
-static int	ft_put_HEX(int va)
+static int	ft_put_HEX(unsigned int va)
 {
 	int		print_count;
 	char	*str_hex;
@@ -29,7 +29,7 @@ static int	ft_put_HEX(int va)
 	return (print_count);
 }
 
-static int	ft_put_hex(int va)
+static int	ft_put_hex(unsigned int va)
 {
 	int		print_count;
 	char	*str_hex;
@@ -44,11 +44,11 @@ static int	ft_put_hex(int va)
 
 int	ft_print_hex(char c, va_list args)
 {
-	int print_count;
-	int va;
+	int				print_count;
+	unsigned int	va;
 
 	print_count = 0;
-	va = va_arg(args, int);
+	va = va_arg(args, unsigned int);
 	if (c == 'x')
 		print_count += ft_put_hex(va);
 	else if (c == 'X')
