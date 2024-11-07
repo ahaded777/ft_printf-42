@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:19:39 by aahaded           #+#    #+#             */
-/*   Updated: 2024/11/06 16:52:42 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/11/07 09:41:11 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -37,10 +37,10 @@ int	ft_print_ptr(va_list args)
 	print_count = 0;
 	va = va_arg(args, unsigned long long);
 	if (!va)
-		return (write(1, "(nil)", 5));
+		return (write(1, "0x0", 5));
 	print_count += write(1, "0x", 2);
 	if (va == 0)
-		print_count += write(1, "0", 1);
+		print_count += write(1, "0x0", 3);
 	else
 		print_count += ft_put_hex(va);
 	return (print_count);

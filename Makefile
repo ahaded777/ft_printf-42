@@ -11,6 +11,7 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
 DEF_COLOR = \033[0;39m
 GREEN = \033[0;92m
@@ -19,11 +20,14 @@ CYAN = \033[0;96m
 
 all: $(NAME)
 
-$(NAME):	$(OBJS)
-	@make -C $(LIBFT_DIR)
+$(NAME):	$(OBJS) $(LIBFT)
+	@cp $(LIBFT) $(NAME)
 	@ar rcs $(NAME) $(OBJS)
 	@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
 	@echo "$(GREEN)libft compiled!$(DEF_COLOR)"
+
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
 
 clean:
 	@$(RM) $(OBJS)
