@@ -9,19 +9,22 @@
 /*   Updated: 2024/11/07 10:19:21 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 #include "./libft/libft.h"
+#include "ft_printf.h"
 
-static int ft_put_str(char *str)
+static int	ft_put_strw(char *str)
 {
-	int i;
+	int	i;
+	int	ret;
 
 	i = 0;
-	if (str == NULL)
-		return (write(1, "(null)\n", 6));
+	if (!str)
+		return (write(1, "(null)", 6));
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		ret = write(1, &str[i], 1);
+		if (ret == -1)
+			return (-1);
 		i++;
 	}
 	return (i);
@@ -33,10 +36,13 @@ int	ft_print_num(va_list args)
 	int		print_count;
 	char	*s_num;
 
-	print_count = 0;
 	va = va_arg(args, int);
 	s_num = ft_itoa(va);
-	print_count = ft_put_str(s_num);
+	if (!s_num)
+		return (-1);
+	print_count = ft_put_strw(s_num);
 	free(s_num);
+	if (print_count == -1)
+		return (-1);
 	return (print_count);
 }

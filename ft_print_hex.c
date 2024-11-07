@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int ft_put_char(char c)
+static int	ft_put_char(char c)
 {
 	return (write(1, &c, 1));
 }
 
-static int	ft_put_HEX(unsigned int va)
+static int	ft_putkbira(unsigned int va)
 {
 	int		print_count;
 	char	*str_hex;
@@ -24,7 +24,7 @@ static int	ft_put_HEX(unsigned int va)
 	print_count = 0;
 	str_hex = "0123456789ABCDEF";
 	if (va >= 16)
-		print_count += ft_put_HEX(va / 16);
+		print_count += ft_putkbira(va / 16);
 	print_count += ft_put_char(str_hex[va % 16]);
 	return (print_count);
 }
@@ -52,6 +52,6 @@ int	ft_print_hex(char c, va_list args)
 	if (c == 'x')
 		print_count += ft_put_hex(va);
 	else if (c == 'X')
-		print_count += ft_put_HEX(va);
+		print_count += ft_putkbira(va);
 	return (print_count);
 }

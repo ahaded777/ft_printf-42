@@ -16,7 +16,7 @@ static int	ft_put_char(char c)
 	return (write(1, &c, 1));
 }
 
-static int	ft_put_hex(unsigned long long  va)
+static int	ft_put_hex(unsigned long long va)
 {
 	int		print_count;
 	char	*str_hex;
@@ -37,7 +37,7 @@ int	ft_print_ptr(va_list args)
 	print_count = 0;
 	va = va_arg(args, unsigned long long);
 	if (!va)
-		return (write(1, "0x0", 5));
+		return (write(1, "0x0", 3));
 	print_count += write(1, "0x", 2);
 	if (va == 0)
 		print_count += write(1, "0x0", 3);

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int ft_print_percent(void)
+int	ft_print_percent(void)
 {
 	return (write(1, "%", 1));
 }
@@ -46,6 +46,32 @@ int	ft_format(const char c, va_list args)
 	return (print_count);
 }
 
+int	ft_lkmala(const char *str, va_list args, int i, int print_count)
+{
+	int	ret;
+
+	while (str[i])
+	{
+		if (str[i] == '%')
+		{
+			i++;
+			ret = ft_format(str[i], args);
+			if (ret == -1)
+				return (-1);
+			print_count += ret;
+		}
+		else
+		{
+			ret = write(1, &str[i], 1);
+			if (ret == -1)
+				return (-1);
+			print_count++;
+		}
+		i++;
+	}
+	return (print_count);
+}
+
 int	ft_printf(const char *str, ...)
 {
 	int		i;
@@ -55,26 +81,17 @@ int	ft_printf(const char *str, ...)
 	i = 0;
 	print_count = 0;
 	va_start(args, str);
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			i++;
-			print_count += ft_format(str[i], args);
-		}
-		else
-		{
-			write(1, &str[i], 1);
-			print_count++;
-		}
-		i++;
-	}
+	if (!str)
+		return (-1);
+	if (write(1, 0, 0) == -1)
+		return (-1);
+	print_count += ft_lkmala(str, args, i, print_count);
 	va_end(args);
 	return (print_count);
 }
 
-int main()
-{
-	ft_printf("%x\n", 1);
-	printf("%x\n", 1);
-}
+// int	main(void)
+// {
+// 	ft_printf("%x\n", 1);
+// 	printf("%x\n", 1);
+// }

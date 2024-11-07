@@ -11,9 +11,13 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int ft_put_str(char *str)
+static int	ft_put_strf(char *str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (-1);
 	while (str[i])
 	{
 		write(1, &str[i], 1);
@@ -22,25 +26,30 @@ static int ft_put_str(char *str)
 	return (i);
 }
 
-static int ft_print_len_nbr(unsigned int nb)
+static int	ft_print_len_nbr(unsigned int nb)
 {
-	int len = 0;
+	int	len;
+
+	len = 0;
 	if (nb == 0)
-		return 1;
+		return (1);
 	while (nb)
 	{
 		nb /= 10;
 		len++;
 	}
-	return len;
+	return (len);
 }
 
-static char *ft_uitoa(unsigned int nb)
+static char	*ft_uitoa(unsigned int nb)
 {
-	int len_num = ft_print_len_nbr(nb);
-	char *res = malloc(len_num + 1);
+	int		len_num;
+	char	*res;
+
+	len_num = ft_print_len_nbr(nb);
+	res = malloc(len_num + 1);
 	if (!res)
-		return NULL;
+		return (NULL);
 	res[len_num] = '\0';
 	if (nb == 0)
 		res[0] = '0';
@@ -49,14 +58,20 @@ static char *ft_uitoa(unsigned int nb)
 		res[--len_num] = (nb % 10) + '0';
 		nb /= 10;
 	}
-	return res;
+	return (res);
 }
 
-int ft_print_unsigned(va_list args)
+int	ft_print_unsigned(va_list args)
 {
-	unsigned int va = va_arg(args, unsigned int);
-	char *str = ft_uitoa(va);
-	int print_count = ft_put_str(str);
+	unsigned int	va;
+	char			*str;
+	int				print_count;
+
+	va = va_arg(args, unsigned int);
+	str = ft_uitoa(va);
+	print_count = ft_put_strf(str);
 	free(str);
-	return print_count;
+	if (print_count == -1)
+		return (-1);
+	return (print_count);
 }
