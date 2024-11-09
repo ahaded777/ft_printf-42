@@ -89,9 +89,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (print_count);
 }
-
-// int	main(void)
-// {
-// 	ft_printf("%x\n", 1);
-// 	printf("%x\n", 1);
-// }

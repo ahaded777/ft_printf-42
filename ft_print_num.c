@@ -9,7 +9,6 @@
 /*   Updated: 2024/11/07 10:19:21 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "./libft/libft.h"
 #include "ft_printf.h"
 
 static int	ft_put_strw(char *str)
@@ -28,6 +27,51 @@ static int	ft_put_strw(char *str)
 		i++;
 	}
 	return (i);
+}
+
+static int	ft_len_num(int n)
+{
+	int	i;
+
+	i = 0;
+	if (n <= 0)
+		i = 1;
+	else
+		i = 0;
+	while (n)
+	{
+		n = (n / 10);
+		i++;
+	}
+	return (i);
+}
+
+static char	*ft_itoa(int n)
+{
+	int		len_num;
+	long	nb;
+	char	*res;
+
+	nb = n;
+	len_num = ft_len_num(nb);
+	res = malloc(len_num + 1);
+	if (!res)
+		return (NULL);
+	res[len_num] = '\0';
+	if (nb == 0)
+		res[0] = '0';
+	if (nb < 0)
+	{
+		res[0] = '-';
+		nb = -nb;
+	}
+	while (nb)
+	{
+		res[len_num - 1] = (nb % 10) + 48;
+		nb = nb / 10;
+		len_num--;
+	}
+	return (res);
 }
 
 int	ft_print_num(va_list args)
