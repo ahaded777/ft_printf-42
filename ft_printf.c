@@ -67,7 +67,8 @@ int	ft_lkmala(const char *str, va_list args, int i, int print_count)
 				return (-1);
 			print_count++;
 		}
-		i++;
+		if (str[i] != '\0')
+			i++;
 	}
 	return (print_count);
 }
@@ -89,3 +90,8 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (print_count);
 }
+
+// int main()
+// {
+// 	ft_printf("%");
+// }

@@ -23,7 +23,6 @@ $(NAME):	$(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 	@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
 
-
 clean:
 	@$(RM) $(OBJS)
 	@echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
