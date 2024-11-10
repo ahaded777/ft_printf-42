@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:36:35 by aahaded           #+#    #+#             */
-/*   Updated: 2024/11/10 13:18:55 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/11/10 13:41:49 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -40,7 +40,7 @@ int	ft_format(const char c, va_list args)
 	else if (c == 'u')
 		print_count += ft_print_unsigned(args);
 	else if (c == 'x' || c == 'X')
-		print_count += ft_print_hex(c, args);
+		print_count += ft_print_hex(c, va_arg(args, unsigned int));
 	else if (c == '%')
 		print_count += ft_putchar_fd('%', 1);
 	return (print_count);
@@ -93,5 +93,5 @@ int	ft_printf(const char *str, ...)
 
 //int main()
 //{
-// 	ft_printf("%%");
+//	ft_printf("%x, %X\n", 255, 255);
 //}
