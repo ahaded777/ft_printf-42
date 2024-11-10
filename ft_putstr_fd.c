@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 11:36:13 by aahaded           #+#    #+#             */
-/*   Updated: 2024/11/07 09:36:09 by aahaded          ###   ########.fr       */
+/*   Created: 2024/11/10 11:38:43 by aahaded           #+#    #+#             */
+/*   Updated: 2024/11/10 12:05:04 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_print_string(va_list args)
+int	ft_putstr_fd(char *s, int fd)
 {
-	int		i;
-	char	*str;
+	int	i;
 
 	i = 0;
-	str = va_arg(args, char *);
-	if (!str)
-		return (write(1, "(null)", 6));
-	while (str[i])
+	if (!s)
+		return (write(fd, "(null)", 6));
+	while (s[i])
 	{
-		write(1, &str[i], 1);
+		write(fd, &s[i], 1);
 		i++;
 	}
 	return (i);

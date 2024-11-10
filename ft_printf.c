@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:36:35 by aahaded           #+#    #+#             */
-/*   Updated: 2024/11/07 13:31:34 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/11/10 13:18:55 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -30,9 +30,9 @@ int	ft_format(const char c, va_list args)
 
 	print_count = 0;
 	if (c == 'c')
-		print_count += ft_print_char(args);
+		print_count += ft_putchar_fd(va_arg(args, int), 1);
 	else if (c == 's')
-		print_count += ft_print_string(args);
+		print_count += ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'p')
 		print_count += ft_print_ptr(args);
 	else if (c == 'd' || c == 'i')
@@ -42,7 +42,7 @@ int	ft_format(const char c, va_list args)
 	else if (c == 'x' || c == 'X')
 		print_count += ft_print_hex(c, args);
 	else if (c == '%')
-		print_count += ft_print_percent();
+		print_count += ft_putchar_fd('%', 1);
 	return (print_count);
 }
 
@@ -91,7 +91,7 @@ int	ft_printf(const char *str, ...)
 	return (print_count);
 }
 
-// int main()
-// {
-// 	ft_printf("%");
-// }
+//int main()
+//{
+// 	ft_printf("%%");
+//}
