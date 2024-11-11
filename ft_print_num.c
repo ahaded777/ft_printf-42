@@ -13,7 +13,6 @@
 
 int	ft_print_num(int nb)
 {
-
 	int	print_count;
 
 	print_count = 0;
@@ -23,11 +22,11 @@ int	ft_print_num(int nb)
 		print_count += ft_print_num((nb / 10));
 	if (nb < 0)
 	{
-		nb *= -1;
-		print_count += ft_putchar_fd('-', 1);
+		nb = -nb;
+		print_count += ft_putchar('-');
 		print_count += ft_print_num(nb);
 	}
 	else
-		print_count += ft_putchar_fd(nb % 10 + '0', 1);
+		print_count += ft_putchar(nb % 10 + '0');
 	return (print_count);
 }

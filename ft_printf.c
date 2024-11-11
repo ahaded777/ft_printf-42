@@ -17,11 +17,11 @@ int	ft_format(const char c, va_list args)
 
 	print_count = 0;
 	if (c == 'c')
-		print_count += ft_putchar_fd(va_arg(args, int), 1);
+		print_count += ft_putchar(va_arg(args, int));
 	else if (c == 's')
-		print_count += ft_putstr_fd(va_arg(args, char *), 1);
+		print_count += ft_putstr(va_arg(args, char *));
 	else if (c == 'p')
-		print_count += ft_print_ptr(args);
+		print_count += ft_print_ptr(va_arg(args, unsigned long));
 	else if (c == 'd' || c == 'i')
 		print_count += ft_print_num(va_arg(args, int));
 	else if (c == 'u')
@@ -29,7 +29,7 @@ int	ft_format(const char c, va_list args)
 	else if (c == 'x' || c == 'X')
 		print_count += ft_print_hex(c, va_arg(args, unsigned int));
 	else if (c == '%')
-		print_count += ft_putchar_fd('%', 1);
+		print_count += ft_putchar('%');
 	return (print_count);
 }
 
@@ -75,8 +75,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (print_count);
 }
-
-//int main()
-//{
-//	printf(NULL);
-//}

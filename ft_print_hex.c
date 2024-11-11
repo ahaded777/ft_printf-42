@@ -22,6 +22,6 @@ int	ft_print_hex(char c, unsigned int va)
 		str_hex = "0123456789ABCDEF";
 	if (va >= 16)
 		print_count += ft_print_hex(c, (va / 16));
-	print_count += ft_putchar_fd(str_hex[va % 16], 1);
+	print_count += ft_putchar(str_hex[va % 16]);
 	return (print_count);
 }

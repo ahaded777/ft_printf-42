@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int ft_print_unsigned(unsigned int nb)
+int	ft_print_unsigned(unsigned int nb)
 {
-	int print_count;
+	int	print_count;
 
-	print_count = 0; 
+	print_count = 0;
 	if (nb > 9)
 		print_count += ft_print_unsigned(nb / 10);
-	print_count += ft_putchar_fd(((nb % 10) + '0'), 1);
+	print_count += ft_putchar(((nb % 10) + '0'));
 	return (print_count);
 }
