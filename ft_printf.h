@@ -20,9 +20,9 @@
 
 int	ft_printf(const char *str, ...);
 int	ft_print_ptr(va_list args);
-int	ft_print_num(va_list args);
+int	ft_print_num(int nb);
 int	ft_print_hex(char c, unsigned int args);
-int	ft_print_unsigned(va_list args);
+int ft_print_unsigned(unsigned int nb);
 int	ft_putchar_fd(int c, int fd);
 int	ft_putstr_fd(char *s, int fd);
 
